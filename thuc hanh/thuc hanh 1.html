@@ -11,17 +11,20 @@
 <body>
     <h1>CLOCK SIMPLE</h1>
     <p id="current-time"></p>
+
 </body>
 <SCript>
-    function Clock() {
+    function ClockSimple() {
         let today = new Date();
-        let date = today.getDate() + '/' + (today.getMonth()+1) + '/' + today.getFullYear();
-        let time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+        let date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
+        let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         let dateTime = date + ' ' + time;
         document.getElementById("current-time").innerHTML = dateTime;
-        setInterval(Clock, 1000);
+        setInterval(ClockSimple,1000);
     }
-    Clock();
+    ClockSimple();
 </SCript>
+
+
 
 </html>

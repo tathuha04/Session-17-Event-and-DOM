@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ĐỒNG HỒ ĐƠN GIẢN</title>
+    <style>
+        img {
+            width: 500px;
+            height: 300px;
+        }
+
+        h1,
+        p {
+            text-align: center;
+            font-family: 'Courier New', monospace;
+        }
+
+        .myAlbum {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+
+        audio {
+            display: flex;
+            margin: 10px 20px;
+        }
+
+        p {
+            display: block;
+            font-size: 30px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Bài tập 1 : Tạo đồng hồ điện tử</h1>
+    <p>Thời gian bây giờ là :</p>
+    <p id="clockSimple"></p>
+
+    <!-- đổi ảnh -->
+
+    <div class="myAlbum">
+        <img src="image/SpongeBob.png" alt="">
+        <div class="text-block">
+
+        </div>
+    </div>
+
+    <div class="myAlbum">
+        <img src="image/03spongebob.jpg" alt="">
+    </div>
+
+
+    <div class="myAlbum">
+        <img src="image/spongebob_header.jpg" alt="">
+    </div>
+
+
+    <div style="text-align: center">
+        <span class="run"></span>
+        <span class="run"></span>
+        <span class="run"></span>
+    </div>
+
+
+    <!-- thêm âm thanh -->
+
+        <audio controls class="audio">
+            <source src="I-Need-You-feat.-Jessie-Harris-Gateway-Worship.ogg" type="audio/ogg">
+        </audio>
+
+        <audio controls class="audio">
+            <source src="Time-machine-_Lofi-Ver._-mj-apanay-x-aren-park-x-Tuann-_-Audio-Lyric-_.mp3">
+        </audio>
+
+        <audio controls class="audio">
+            <source src="Lyrics-Vietsub-_-Just-Say-Hello-Melo-D.mp3">
+        </audio>
+
+
+</body>
+<!-- hiển thị thời gian hiện tại -->
+<script>
+    function Clock() {
+        let today = new Date();
+        let time = today.getHours() + ' : ' + today.getMinutes() + ' : ' + today.getSeconds();
+        document.getElementById("clockSimple").innerHTML = time;
+        setInterval(Clock, 1000)
+    }
+    Clock();
+
+   
+    // trình chiếu hình ảnh
+    let count = 0;
+    function showMyAlbum() {
+        let album = document.getElementsByClassName("myAlbum");
+        let runn = document.getElementsByClassName("run");
+
+        for (let i = 0; i < album.length; i++) {
+            album[i].style.display = "none"
+        }
+
+        count++;
+
+        if (count > album.length) {
+            count = 1
+        }
+
+        for (i = 0; i < runn.length; i++) {
+            runn[i].className = runn[i].className.replace("active", "");
+        }
+        album[count - 1].style.display = "block";
+        runn[count - 1].className += " active";
+        setTimeout(showMyAlbum, 1000);
+    }
+    showMyAlbum();
+</script>
+
+</html>
