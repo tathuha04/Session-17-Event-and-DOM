@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạo đồng hồ đếm ngược</title>
+    <style>
+        .donghodemnguoc {
+            display: flex;
+            justify-content: center;
+            font-size: 30px;
+            padding: 30px;
+        }
+
+        .donghodemnguoc p {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .donghodemnguoc h3 {
+            width: 30px;
+            font-size: 30px;
+            margin: 20px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bai2">
+        <div class="donghodemnguoc">
+            <div>
+                <p>Giờ</p>
+                <h3 id="hour"></h3>
+            </div>
+            <div>
+                <p>Phút</p>
+                <h3 id="minute"></h3>
+            </div>
+            <div>
+                <p>Giây</p>
+                <h3 id="second"></h3>
+            </div>
+        </div>
+
+        <div class="hienthichicken">
+            <h3>Score : <span id="score"></span></h3>
+            <div id="textchicken"></div>
+            <div id="chicken"></div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    let score = 0;
+    let index = 10;
+
+    // đếm ngược
+
+    function Clock() {
+        let today = new Date;
+        let hour = today.getHours();
+        let minute = today.getMinutes();
+        let second = today.getSeconds();
+
+
+        setInterval(function () {
+            second--;
+            if (second <= 0) {
+                minute -= 1;
+                second = 59;
+            }
+            if (minute == -1) {
+                hour -= 1;
+                minute = 59;
+            }
+            document.getElementById("hour").innerHTML = hour;
+            document.getElementById("minute").innerHTML = minute;
+            document.getElementById("second").innerHTML = second;
+        }, 1000)
+
+    }
+    Clock();
+
+    function textchicken() {
+        if (index > 0) {
+            index--;
+            document.getElementById("textchicken").innerHTML = "Gà con sẽ xuất hiện sau: " + index + "giây";
+
+
+        }
+        else {
+            index = 10;
+        } setTimeout(textchicken, 1000);
+    }
+    textchicken();
+
+    let chicken = document.getElementById("chicken");
+    let chickenImg = document.createElement("img");
+    var chickenInterval = "";
+
+    function addchicken() {
+        chickenImg.src = "  "    /////////////////////////////////////////////////////////////////
+        chickenImg.width = Math.floor((Math.random() * 300) - 50);
+        chickenImg.style.position = "absolute";
+        chickenImg.style.top = Math.floor(Math.random() * 300) + "px";
+        chickenImg.style.left = Math.floor(Math.random() * 400) + "px";
+        chickenImg.style.right = Math.floor(Math.random() * 400) + "px";
+        chickenImg.classList.add("chickenBtn");
+
+        chickenImg.onclick = function () {
+            chickenImg.src = "";
+            if (chickenImg.width <= 50) {
+                score += 5;
+            }
+            else if (chickenImg.width <= 150) {
+                score += 3;
+            }
+            else if (chickenImg.width <= 250) {
+                score++;
+            }
+            document.getElementById("score").innerHTML = score;
+        }
+        chicken.appendChild(chickenImg);
+
+        setTimeout(addChicken, 11000);
+    }
+    addChicken();
+
+
+    function hideChicken() {
+        chickenImg.src = "";
+        setTimeout(hideChicken, 5000);
+    }
+
+    hideChicken();
+</script>
+
+</html>
