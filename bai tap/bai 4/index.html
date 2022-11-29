@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body {
+        font-family: Arial;
+        margin: 0;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    img {
+        vertical-align: middle;
+       
+    }
+    h2{
+        font-family: 'Courier New', monospace;
+    }
+
+    .container {
+        position: relative;
+    }
+
+    
+    .mySlides {
+        display: none;
+    }
+
+   
+    .cursor {
+        cursor: pointer;
+    }
+
+   
+    .prev,
+    .next {
+        cursor: pointer;
+        position: absolute;
+        top: 40%;
+        width: auto;
+        padding: 16px;
+        margin-top: -50px;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        font-size: 20px;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+
+    
+    .prev:hover,
+    .next:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+   
+    .numbertext {
+        color: #000000;
+        font-size: 20px;
+        padding: 12px 16px;
+        position: absolute;  /* set vi tri */
+        top: 0;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    
+    .column {
+        float: left;
+        width: 16.66%;
+    }
+
+   
+    .demo {
+        opacity: 0.6;
+    }
+
+    .active,
+    .demo:hover {
+        opacity: 1;
+    }
+    
+</style>
+
+<body>
+
+    <h2 style="text-align:center">Bài 4 : Tạo album ảnh (story board)</h2>
+
+    <div class="container">
+        <div class="mySlides">
+            <div class="numbertext">1 / 6</div>
+            <img src="image/81Copy.png" style="width:100%">
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">2 / 6</div>
+            <img src="image/NINTCHDBPICT0005891349865.png" style="width:100%">
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">3 / 6</div>
+            <img src="image/834efb980b5d507eb3.png" style="width:100%">
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">4 / 6</div>
+            <img src="image/21-214285_spongebob.png" style="width:100%">
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">5 / 6</div>
+            <img src="image/spongebob-jellyf.png" style="width:100%">
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">6 / 6</div>
+            <img src="image/tải xuống4.png" style="width:100%">
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+
+        <div class="caption-container">
+            <p id="caption"></p>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <img class="demo cursor" src="image/81Copy - Copy.png" style="width:100%" onclick="currentSlide(1)"
+                    alt="">
+            </div>
+            <div class="column">
+                <img class="demo cursor" src="image/NINTCHDBPICT0005891349865 - Copy.png" style="width:100%" onclick="currentSlide(2)"
+                    alt="">
+            </div>
+            <div class="column">
+                <img class="demo cursor" src="image/834efb980b5d507eb3 - Copy.png" style="width:100%" onclick="currentSlide(3)"
+                    alt="">
+            </div>
+            <div class="column">
+                <img class="demo cursor" src="image/21-214285_spongebob - Copy.png" style="width:100%" onclick="currentSlide(4)"
+                    alt="">
+            </div>
+            <div class="column">
+                <img class="demo cursor" src="image/spongebob-jellyf - Copy.png" style="width:100%" onclick="currentSlide(5)"
+                    alt="">
+            </div>
+            <div class="column">
+                <img class="demo cursor" src="image/tải xuống4 - Copy.png" style="width:100%" onclick="currentSlide(6)"
+                    alt="">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function runSlides(){
+            slideIndex++;
+            showSlides()
+        }
+        setInterval(runSlides,30000);
+        
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("demo");
+            let captionText = document.getElementById("caption");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+            captionText.innerHTML = dots[slideIndex - 1].alt;
+        }
+    </script>
+
+</body>
+
+</html>
